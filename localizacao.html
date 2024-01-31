@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>HTML Geolocalizacao Teste</h1>
+<p>Click para descobrir suas coodenadas</p>
+
+<button onclick="getLocation()">Buscar localizacao</button>
+
+<p id="demo"></p>
+
+<script>
+const x = document.getElementById("demo");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    
+  } else { 
+    x.innerHTML = "Não suportado no navegador.";
+  }
+}
+
+function showPosition(position) {
+  x.innerHTML = "Latitude: " + position.coords.latitude + 
+  "<br>Longitude: " + position.coords.longitude;
+
+}
+
+
+function localiza(position) {
+
+    navigator.geolocation.getCurrentPosition(localiza);
+    
+    var link ="https://www.google.com/maps/place/"+position.coords.latitude+","+position.coords.longitude;
+
+  window.location.href =link;
+}
+</script>
+
+<br>
+
+<button id="mensagem" onclick="localiza()">No mapa</button>
+
+</body>
+</html>
+
